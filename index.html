@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fff7f5" />
+  <title>ZÉA Music — Your Little Sound Sanctuary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="ZÉA Music home">
+        <span class="brand-mark">z.</span>
+        <span>ZÉA<span class="brand-light"> music</span></span>
+      </a>
+
+      <div class="sidebar-label">YOUR SPACE</div>
+      <nav class="main-nav">
+        <button class="nav-item active" data-view="discover"><span>⌂</span> Discover</button>
+        <button class="nav-item" data-view="library"><span>♫</span> Your library</button>
+        <button class="nav-item" data-view="liked"><span>♡</span> Liked songs</button>
+      </nav>
+
+      <div class="sidebar-divider"></div>
+      <div class="playlist-heading">
+        <span class="sidebar-label">PLAYLISTS</span>
+        <button id="create-playlist" class="tiny-button" title="Create playlist" aria-label="Create playlist">＋</button>
+      </div>
+      <div id="playlist-list" class="playlist-list">
+        <button class="playlist-link" data-playlist="all">✿ All songs</button>
+        <button class="playlist-link" data-playlist="chill">☁ Soft & chill</button>
+        <button class="playlist-link" data-playlist="focus">♡ Slow moments</button>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="mini-note">
+          <span class="note-flower">✿</span>
+          <p>A little music,<br />a little peace.</p>
+          <span class="note-small">made for your moments</span>
+        </div>
+        <button id="theme-toggle" class="theme-toggle">☾ <span>Switch to night mode</span></button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="greeting">
+          <span class="eyebrow">YOUR PERSONAL SOUNDTRACK</span>
+          <h1>Find your <em>little moment.</em></h1>
+        </div>
+        <div class="top-actions">
+          <label class="search-box">
+            <span>⌕</span>
+            <input id="search-input" type="search" placeholder="Search songs or artists..." aria-label="Search songs or artists" />
+            <kbd>/</kbd>
+          </label>
+          <label class="upload-button">
+            <span>＋</span> Add music
+            <input id="file-input" type="file" accept="audio/*" multiple hidden />
+          </label>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="hero-pill"><span class="sparkle">✦</span> A SOFTER KIND OF SOUND</span>
+          <h2>Let the music<br />find <em>you.</em></h2>
+          <p>Your own little corner of the world.<br />Press play and stay a while.</p>
+          <button id="hero-play" class="primary-button">▶ &nbsp; Play something lovely</button>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="sun-glow"></div>
+          <div class="art-circle circle-one"></div>
+          <div class="art-circle circle-two"></div>
+          <div class="art-flower">✿</div>
+          <div class="art-label">SLOW<br />DOWN.</div>
+          <div class="art-orbit"></div>
+        </div>
+        <span class="hero-decoration decor-one">✧</span>
+        <span class="hero-decoration decor-two">✿</span>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">A GOOD PLACE TO START</span>
+            <h2 id="section-title">Made for your mood</h2>
+          </div>
+          <span id="song-count" class="muted-count">0 songs</span>
+        </div>
+
+        <div class="filter-row" aria-label="Filter songs">
+          <button class="filter-chip active" data-filter="all">Everything</button>
+          <button class="filter-chip" data-filter="chill">Soft & chill</button>
+          <button class="filter-chip" data-filter="focus">Slow moments</button>
+          <button class="filter-chip" data-filter="local">Your uploads</button>
+        </div>
+
+        <div id="song-grid" class="song-grid"></div>
+        <div id="empty-state" class="empty-state" hidden>
+          <span>♫</span>
+          <h3>No songs here just yet</h3>
+          <p>Try another search, or add your own music to get started.</p>
+          <label class="primary-button upload-empty">
+            Add your music
+            <input id="empty-file-input" type="file" accept="audio/*" multiple hidden />
+          </label>
+        </div>
+      </section>
+
+      <section class="upload-banner">
+        <div class="upload-icon">♫</div>
+        <div class="upload-copy">
+          <h3>Your music, your rules.</h3>
+          <p>Add MP3, WAV, M4A, OGG, and other audio files supported by your browser.</p>
+        </div>
+        <label class="outline-button">
+          Browse files <input id="banner-file-input" type="file" accept="audio/*" multiple hidden />
+        </label>
+      </section>
+
+      <footer>Made with ♡ by ZÉA Music <span>— your little sound sanctuary</span></footer>
+    </main>
+  </div>
+
+  <section class="player" aria-label="Music player">
+    <div class="now-playing">
+      <div id="current-cover" class="current-cover cover-rose"><span>♫</span></div>
+      <div class="current-meta">
+        <strong id="current-title">Choose a song</strong>
+        <span id="current-artist">Your next favourite is waiting</span>
+      </div>
+      <button id="like-current" class="like-button" aria-label="Like current song" title="Like song">♡</button>
+    </div>
+
+    <div class="player-center">
+      <div class="player-controls">
+        <button id="shuffle-button" class="control-button" aria-label="Toggle shuffle" title="Shuffle">⤨</button>
+        <button id="previous-button" class="control-button" aria-label="Previous song" title="Previous">|◀</button>
+        <button id="play-button" class="play-button" aria-label="Play" title="Play">▶</button>
+        <button id="next-button" class="control-button" aria-label="Next song" title="Next">▶|</button>
+        <button id="repeat-button" class="control-button" aria-label="Toggle repeat" title="Repeat">↻</button>
+      </div>
+      <div class="progress-row">
+        <span id="current-time">0:00</span>
+        <input id="progress" type="range" min="0" max="1000" value="0" aria-label="Song progress" />
+        <span id="duration">0:00</span>
+      </div>
+    </div>
+
+    <div class="player-extras">
+      <span class="volume-icon">♫</span>
+      <input id="volume" type="range" min="0" max="1" step="0.01" value="0.75" aria-label="Volume" />
+    </div>
+  </section>
+
+  <audio id="audio" preload="metadata"></audio>
+
+  <dialog id="playlist-dialog" class="modal">
+    <form id="playlist-form">
+      <span class="eyebrow">MAKE IT YOURS</span>
+      <h2>Create a playlist</h2>
+      <p>Give your collection a little name.</p>
+      <input id="playlist-name" type="text" maxlength="35" placeholder="e.g. Rainy day thoughts" required />
+      <div class="modal-actions">
+        <button type="button" id="cancel-playlist" class="outline-button">Cancel</button>
+        <button type="submit" class="primary-button">Create playlist</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
